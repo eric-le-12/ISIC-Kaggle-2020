@@ -30,7 +30,7 @@ def train_one_epoch(
         output = model(data)
         # get the prediction label and target label
         output = model(data)
-        preds = torch.argmax(output, axis=1).cpu().detach().numpy()
+        preds = (torch.sigmoid(output)>0.5).cpu().detach().numpy()
         labels = target.cpu().numpy()
         # calculate-the-batch-loss
         loss = criterion(output, target.unsqueeze(1).float())
@@ -51,7 +51,7 @@ def train_one_epoch(
         data = data.to(device)
         target = target.to(device)
         output = model(data)
-        preds = torch.argmax(output, axis=1).tolist()
+        preds = (torch.sigmoid(output)>0.5).tolist()
         labels = target.tolist()
         all_labels.extend(labels)
         all_preds.extend(preds)
