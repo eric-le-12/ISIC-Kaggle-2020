@@ -109,7 +109,7 @@ def main():
     logging.info("-----")
     logging.info("session name: {} \n".format(cfg["session"]["sess_name"]))
     logging.info("Training size: "+str(len(train)))
-    logging.info("Validation size: "+str(len(val)))
+    logging.info("Validation size: "+str(len(test)))
     logging.info(model)
     logging.info("\n")
     logging.info("CONFIGS \n")
