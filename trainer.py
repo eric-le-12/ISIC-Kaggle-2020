@@ -1,6 +1,7 @@
 import model
 import torch
 import torch.nn as nn
+from barbar import Bar
 
 
 def train_one_epoch(
@@ -18,7 +19,7 @@ def train_one_epoch(
     train_loss = 0
     valid_loss = 0
     model.train()
-    for data, target in train_loader:
+    for data, target in Bar(train_loader):
         # move-tensors-to-GPU
         data = data.to(device)
         # target=torch.Tensor(target)
