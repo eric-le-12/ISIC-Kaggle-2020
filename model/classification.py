@@ -6,7 +6,7 @@ from efficientnet_pytorch import EfficientNet
 
 
 class ClassificationModel:
-    def __init__(self, model_name, pretrained="imagenet", class_num=2):
+    def __init__(self, model_name, pretrained="imagenet", class_num=1):
         """Make your model by using transfer learning technique:  
         Using a pretrained model (not including the top layer(s)) as a feature extractor and 
         add on top of that model your custom classifier
