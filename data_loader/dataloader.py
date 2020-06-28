@@ -3,6 +3,7 @@ import torch
 from PIL import Image
 import os
 from sklearn.model_selection import train_test_split
+import cv2
 
 # define a data class
 class ClassificationDataset:
