@@ -30,6 +30,7 @@ def main():
     validation_split = float(cfg["data"]["validation_ratio"])
     # create dataset
     training_set = pd.read_csv(data, usecols=["image_name", "target"])
+    training_set["image_name"] = training_set["image_name"]+'.jpg'
     train, test, _, _ = dataloader.data_split(training_set, validation_split)
 
     training_set = dataloader.ClassificationDataset(
@@ -161,7 +162,7 @@ def main():
     test_data = cfg["data"]["test_csv_name"]
     data_path = cfg["data"]["data_path"]
     test_df = pd.read_csv(test_data, usecols=["image_name", "target"])
-
+    test_df['image_name'] = test_df['image_name']  +'.jpg'
     # prepare the dataset
     testing_set = dataloader.TestDataset(
         test_df, 'dataset/test/test', transform.val_transform
