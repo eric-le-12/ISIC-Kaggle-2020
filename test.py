@@ -42,18 +42,20 @@ if __name__ == "__main__":
     main()
     test_data = cfg["data"]["test_csv_name"]
     data_path = cfg["data"]["data_path"]
-    test_df = pd.read_csv(test_data, usecols=["file_name", "label"])
+    test_df = pd.read_csv(test_data, usecols=["image_name", "target"])
+    test_df['image_name'] = test_df['image_name']  +'.jpg'
+
     # prepare the dataset
-    testing_set = dataloader.ClassificationDataset(
-        test_df, data_path, transform.val_transform
+    testing_set = dataloader.TestDataset(
+        test_df, 'dataset/test/test', transform.test_transform
     )
     # make dataloader
-    test_loader = torch.utils.data.DataLoader(testing_set, batch_size=1, shuffle=False,)
+    test_loader = torch.utils.data.DataLoader(testing_set, batch_size=16, shuffle=False,)
     # load model
     extractor_name = cfg["train"]["extractor"]
     model = cls.ClassificationModel(model_name=extractor_name).create_model()
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    model_path = os.path.join("saved/models", cfg["train"]["save_as_name"])
+    model_path = os.path.join("saved/models", "20200628-1724-model1.pth")
     model.load_state_dict(torch.load(model_path))
     model = model.to(device)
 
