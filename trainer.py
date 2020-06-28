@@ -32,7 +32,7 @@ def train_one_epoch(
         preds = torch.argmax(output, axis=1).cpu().detach().numpy()
         labels = target.cpu().numpy()
         # calculate-the-batch-loss
-        loss = criterion(output, target.unsqueeze(1))
+        loss = criterion(output, target.unsqueeze(1).float())
         # backward-pass: compute-gradient-of-the-loss-wrt-model-parameters
         loss.backward()
         # perform-a-ingle-optimization-step (parameter-update)
