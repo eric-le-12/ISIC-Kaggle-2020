@@ -4,7 +4,7 @@ from torchtoolbox.transform.cutout import Cutout_PIL as Cutout
 from albumentations import *
 from albumentations.pytorch import ToTensor
 
-train_transform = transforms.Compose(
+train_transform = Compose(
     [  Blur(p=0.5,blur_limit=3),
         VerticalFlip(p=.5),
        HorizontalFlip(p=.5),
