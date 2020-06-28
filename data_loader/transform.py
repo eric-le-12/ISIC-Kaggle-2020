@@ -5,7 +5,7 @@ from albumentations import *
 from albumentations.pytorch import ToTensor
 
 train_transform = transforms.Compose(
-    [  Blur(p=0.5,blur_limit=3)
+    [  Blur(p=0.5,blur_limit=3),
         VerticalFlip(p=.5),
        HorizontalFlip(p=.5),
        HueSaturationValue(),
