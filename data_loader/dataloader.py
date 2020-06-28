@@ -5,6 +5,7 @@ import os
 from sklearn.model_selection import train_test_split
 import cv2
 from matplotlib import pyplot as plt
+import numpy as np
 
 # define a data class
 class ClassificationDataset:
