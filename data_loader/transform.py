@@ -13,5 +13,6 @@ train_transform = Compose(
 )
 
 val_transform = Compose(
-    [transforms.ToTensor()]
+    []
 )
+test_transform = transforms.Compose([transforms.ToTensor()])
