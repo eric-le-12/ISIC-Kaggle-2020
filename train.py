@@ -108,6 +108,8 @@ def main():
     # export the result to log file
     logging.info("-----")
     logging.info("session name: {} \n".format(cfg["session"]["sess_name"]))
+    logging.info("Training size: "+str(len(train)))
+    logging.info("Validation size: "+str(len(val)))
     logging.info(model)
     logging.info("\n")
     logging.info("CONFIGS \n")
