@@ -29,8 +29,9 @@ class ClassificationDataset:
         name = str(self.data.iloc[idx, 0])
 
         if self.transform is not None:
-            img = self.transform(img)
+            img = self.transform(image=np.array(img))['image']
         img = np.transpose(img, (2, 0, 1)).astype(np.float32)
+        img = torch.tensor(img, dtype=torch.float)
         label = self.data.iloc[idx, -1]
 
         return img, label
