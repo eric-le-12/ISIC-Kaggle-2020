@@ -40,9 +40,9 @@ class Microscope:
         return f'{self.__class__.__name__}(p={self.p})'
 
 train_transform = Compose(
-    [   Resize(256,256,p=1),
+    [   Microscope(p=0.5),
+        Resize(256,256,p=1),
         GaussNoise(),
-        Microscope(p=0.5),
         VerticalFlip(p=.5),
        HorizontalFlip(p=.5),
 
