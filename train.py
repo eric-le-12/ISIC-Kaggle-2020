@@ -174,7 +174,7 @@ def main():
     # make dataloader
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     test_loader = torch.utils.data.DataLoader(testing_set, batch_size=1, shuffle=False)
-    print("Inference on the testing set")
+    print("\n Inference on the testing set")
 
     # load the test model and making inference
     test_model = cls.ClassificationModel(model_name=extractor_name).create_model()

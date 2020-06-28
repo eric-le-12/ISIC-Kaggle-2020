@@ -7,6 +7,7 @@ import pandas as pd
 import json
 from data_loader import transform
 from model import classification as cls
+from barbar import Bar
 
 # use this file if you want to quickly test your model
 
@@ -19,7 +20,7 @@ def test_result(model, test_loader, device):
     model.eval()
     preds = []
     names = []
-    for data, name in test_loader:
+    for data, name in Bar(test_loader):
         # move-tensors-to-GPU
         data = data.to(device)
         output = model(data)
