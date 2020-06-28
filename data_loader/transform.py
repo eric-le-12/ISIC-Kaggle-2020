@@ -41,10 +41,9 @@ class Microscope:
 
 train_transform = Compose(
     [   Resize(256,256,p=1),
-        Equalize(),
+        GaussNoise(),
         Microscope(p=0.5),
         VerticalFlip(p=.5),
-        Blur(p=0.5,blur_limit=3),
        HorizontalFlip(p=.5),
 
     ]
