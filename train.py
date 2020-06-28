@@ -168,7 +168,7 @@ def main():
     test_df['image_name'] = test_df['image_name']  +'.jpg'
     # prepare the dataset
     testing_set = dataloader.TestDataset(
-        test_df, './dataset/test/test', transform.test_transform
+        test_df, 'dataset/test/test', transform.test_transform
     )
 
     # make dataloader

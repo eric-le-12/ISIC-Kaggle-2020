@@ -38,7 +38,7 @@ class ClassificationModel:
     def create_model(self):
         # load your pretrained model
         
-        model = EfficientNet.from_pretrained('efficientnet-b4')
+        model = EfficientNet.from_pretrained('efficientnet-b1')
         self.classifier(model._fc.in_features)
         # create classifier
         model._fc = self.cls
