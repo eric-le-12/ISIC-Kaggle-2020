@@ -9,7 +9,6 @@ train_transform = Compose(
         VerticalFlip(p=.5),
        HorizontalFlip(p=.5),
        HueSaturationValue(),
-        ToTensor(),
     ]
 )
 
