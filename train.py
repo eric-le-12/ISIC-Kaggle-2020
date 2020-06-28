@@ -29,7 +29,7 @@ def main():
     batch_size = int(cfg["data"]["batch_size"])
     validation_split = float(cfg["data"]["validation_ratio"])
     # create dataset
-    training_set = pd.read_csv(data, usecols=["file_name", "label"])
+    training_set = pd.read_csv(data, usecols=["image_name", "target"])
     train, test, _, _ = dataloader.data_split(training_set, validation_split)
 
     training_set = dataloader.ClassificationDataset(
@@ -160,7 +160,7 @@ def main():
     # testing on test set
     test_data = cfg["data"]["test_csv_name"]
     data_path = cfg["data"]["data_path"]
-    test_df = pd.read_csv(test_data, usecols=["file_name", "label"])
+    test_df = pd.read_csv(test_data, usecols=["image_name", "target"])
 
     # prepare the dataset
     testing_set = dataloader.TestDataset(
