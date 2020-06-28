@@ -12,6 +12,6 @@ train_transform = Compose(
     ]
 )
 
-val_transform = transforms.Compose(
+val_transform = Compose(
     [transforms.ToTensor()]
 )
