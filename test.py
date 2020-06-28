@@ -18,20 +18,19 @@ def test_result(model, test_loader, device):
     # testing the model by turning model "Eval" mode
     model.eval()
     preds = []
-    labels = []
-    for data, target in test_loader:
+    names = []
+    for data, name in test_loader:
         # move-tensors-to-GPU
         data = data.to(device)
-        # target=torch.Tensor(target)
-        target = target.to(device)
-        # forward-pass: compute-predicted-outputs-by-passing-inputs-to-the-model
         output = model(data)
-        prob = nn.Softmax(dim=1)
-        # applying Softmax to results
-        probs = prob(output)
-        labels.extend(target.tolist())
-        preds.extend(torch.argmax(probs, axis=1).tolist())
-    return (classification_report(labels, preds, target_names=cfg["data"]["label_dict"]))
+        output = torch.sigmoid(output)
+        output = output > 0.5
+        names.extend(list(name))
+        preds.extend(output.tolist())
+    
+    test_result = pd.DataFrame({'image_name':names,'target':preds})
+    test_result.to_csv('testing.csv')
+    return (test_result)
 
 
 def main():

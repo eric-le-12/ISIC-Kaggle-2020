@@ -140,20 +140,20 @@ def main():
         logging.info(val_result)
         logging.info("\n")
         # saving epoch with best validation accuracy
-        if best_val_acc < float(val_result["accuracy_score"]):
+        if best_val_acc < float(val_result["f1_score"]):
             logging.info(
-                "Validation accuracy= "+
-                str(val_result["accuracy_score"])+
+                "Validation f1= "+
+                str(val_result["f1_score"])+
                 "===> Save best epoch"
             )
-            best_val_acc = val_result["accuracy_score"]
+            best_val_acc = val_result["f1_score"]
             torch.save(
                 model.state_dict(),
                 "saved/models/" + time_str + "-" + cfg["train"]["save_as_name"],
             )
         else:
             logging.info(
-                "Validation accuracy= "+ str(val_result["accuracy_score"])+ "===> No saving"
+                "Validation f1= "+ str(val_result["f1_score"])+ "===> No saving"
             )
             continue
 
@@ -163,8 +163,8 @@ def main():
     test_df = pd.read_csv(test_data, usecols=["file_name", "label"])
 
     # prepare the dataset
-    testing_set = dataloader.ClassificationDataset(
-        test_df, data_path, transform.val_transform
+    testing_set = dataloader.TestDataset(
+        test_df, 'dataset/test/test', transform.val_transform
     )
 
     # make dataloader

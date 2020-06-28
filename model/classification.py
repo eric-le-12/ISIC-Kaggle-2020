@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import pretrainedmodels as ptm
 import ssl
+from efficientnet_pytorch import EfficientNet
 
 
 class ClassificationModel:
@@ -36,17 +37,8 @@ class ClassificationModel:
 
     def create_model(self):
         # load your pretrained model
-        try:
-            model = ptm.__dict__[self.model_name](pretrained=self.pretrained)
-        except:
-            ssl._create_default_https_context = ssl._create_unverified_context
-            model = ptm.__dict__[self.model_name](pretrained=self.pretrained)
-        # incoming features to the classifier
-        in_features = model.last_linear.in_features
-        # create classfier
-        self.classifier(in_features)
-        # replace the last linear layer with your custom classifier
-        model.last_linear = self.cls
+        model = EfficientNet.from_pretrained('efficientnet-b4')
+        model._fc = self.cls
         # select with layers to unfreeze
         for param in model.parameters():
             param.requires_grad = True
