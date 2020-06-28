@@ -22,11 +22,11 @@ class ClassificationDataset:
         self.transform = transform
 
     def __getitem__(self, idx):
-        img = Image.open(os.path.join(self.data_path, self.data.iloc[idx, 0]))
+        img = cv2.imread(os.path.join(self.data_path, self.data.iloc[idx, 0]))
         label = self.data.iloc[idx, -1]
-
         if self.transform is not None:
             img = self.transform(img)
+        img = img['image']
         return img, label
 
     def __len__(self):
@@ -88,6 +88,6 @@ def make_loader(dataset, train_batch_size, validation_split=0.2):
 
 def data_split(data, test_size):
     x_train, x_test, y_train, y_test = train_test_split(
-        data, data["label"], test_size=test_size
+        data, data["target"], test_size=test_size
     )
     return x_train, x_test, y_train, y_test
