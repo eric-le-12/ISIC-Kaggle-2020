@@ -54,7 +54,7 @@ def train_one_epoch(
         labels = target.tolist()
         all_labels.extend(labels)
         all_preds.extend(preds)
-        loss = criterion(output, target)
+        loss = criterion(output, target.unsqueeze(1).float())
 
         # update-average-validation-loss
         valid_loss += loss.item() * data.size(0)
