@@ -52,4 +52,4 @@ train_transform = Compose(
 val_transform = Compose(
     [Resize(256,256,p=1)]
 )
-test_transform = transforms.Compose([transforms.Resize((256,256),p=1),transforms.ToTensor()])
+test_transform = transforms.Compose([transforms.Resize((256,256)),transforms.ToTensor()])
