@@ -1,3 +1,4 @@
+from sklearn.utils import shuffle
 import json
 from data_loader import dataloader
 from model import classification as cls
@@ -31,6 +32,9 @@ def main():
     # create dataset
     training_set = pd.read_csv(data, usecols=["image_name", "target"])
     training_set["image_name"] = training_set["image_name"]+'.jpg'
+    training_set = shuffle(training_set)
+    training_set = training_set.sample(25000)
+    
     print(training_set['target'].value_counts())
     train, test, _, _ = dataloader.data_split(training_set, validation_split)
 
