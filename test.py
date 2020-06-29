@@ -24,9 +24,9 @@ def test_result(model, test_loader, device):
         # move-tensors-to-GPU
         data = data.to(device)
         output = model(data)
-        output = torch.sigmoid(output)
+        pred = torch.sigmoid(output)
         names.extend(list(name))
-        preds.extend(output.tolist())
+        preds.extend(pred.tolist())
     
     test_result = pd.DataFrame({'image_name':names,'target':preds})
     test_result.to_csv('testing.csv')
