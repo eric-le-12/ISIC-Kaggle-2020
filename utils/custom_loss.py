@@ -6,7 +6,7 @@ from torch.autograd import Variable
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 class FocalLoss(nn.Module):
-   def __init__(self, class_num, alpha=None, gamma=2, size_average=True):
+   def __init__(self, class_num=2, alpha=None, gamma=2, size_average=True):
        super(FocalLoss, self).__init__()
        if alpha is None:
            self.alpha = Variable(torch.ones(class_num, 1))
