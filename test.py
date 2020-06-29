@@ -25,6 +25,7 @@ def test_result(model, test_loader, device):
         data = data.to(device)
         output = model(data)
         output = torch.sigmoid(output)
+        print(output)
         output = output > 0.5
         names.extend(list(name))
         preds.extend(output.tolist())
