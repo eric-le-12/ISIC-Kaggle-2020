@@ -31,7 +31,7 @@ def main():
     # create dataset
     training_set = pd.read_csv(data, usecols=["image_name", "target"])
     training_set["image_name"] = training_set["image_name"]+'.jpg'
-    training_set = training_set.groupby('target').apply(lambda x: x.sample(n=5000)).reset_index(drop = True)
+    print(training_set['target'].value_counts())
     train, test, _, _ = dataloader.data_split(training_set, validation_split)
 
     training_set = dataloader.ClassificationDataset(

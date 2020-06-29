@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
     # prepare the dataset
     testing_set = dataloader.TestDataset(
-        test_df, 'dataset/test/test', transform.test_transform
+        test_df, './dataset/test/test', transform.test_transform
     )
     # make dataloader
     test_loader = torch.utils.data.DataLoader(testing_set, batch_size=16, shuffle=False,)
