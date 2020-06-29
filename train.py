@@ -92,7 +92,7 @@ def main():
             loss_function,
             "The loss {} is not available".format(loss_function),
         )
-    criterion = criterion()
+    criterion = custom_loss.FocalLoss()
     optimizer = getattr(
         torch.optim, optimizers, "The optimizer {} is not available".format(optimizers)
     )
